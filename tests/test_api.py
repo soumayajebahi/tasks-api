@@ -40,3 +40,11 @@ def test_metrics_endpoint_exposes_request_counter():
     response = client.get("/metrics")
     assert response.status_code == 200
     assert "http_requests_total" in response.text
+
+
+def test_delete_unknown_task_returns_404():
+    assert client.delete("/tasks/9999").status_code == 404
+
+
+def test_too_long_title_is_rejected():
+    assert client.post("/tasks", json={"title": "x" * 101}).status_code == 422
