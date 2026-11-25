@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   test:
     name: Tests et lint
@@ -64,3 +67,4 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/tasks-api:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/tasks-api:${{ github.sha }}
+
