@@ -2,7 +2,6 @@
 import json
 import logging
 import time
-from typing import Dict
 
 from fastapi import FastAPI, HTTPException, Request, Response
 from opentelemetry import trace
@@ -60,8 +59,8 @@ class Task(TaskIn):
     id: int
 
 
-tasks: Dict[int, Task] = {}
-ids = itertools.count(1)
+tasks: dict[int, Task] = {}
+ids = itertools.count(1)  # generates 1, 2, 3, ... for new tasks
 
 app = FastAPI(title="Tasks API", version="1.0.0")
 
