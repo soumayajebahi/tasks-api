@@ -85,6 +85,7 @@ Stop everything with `docker compose down`.
 kind create cluster --name devops
 kubectl apply -f k8s/
 kubectl rollout status deployment/tasks-api
+kubectl get pods
 kubectl port-forward svc/tasks-api 8080:80
 ```
 
@@ -167,3 +168,4 @@ docs/            ZAP reports
 Dockerfile
 docker-compose.yml
 ```
+
