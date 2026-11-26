@@ -48,3 +48,16 @@ def test_delete_unknown_task_returns_404():
 
 def test_too_long_title_is_rejected():
     assert client.post("/tasks", json={"title": "x" * 101}).status_code == 422
+
+
+def test_security_headers_are_set():
+    response = client.get("/health")
+    assert response.headers["x-content-type-options"] == "nosniff"
+    assert response.headers["cross-origin-resource-policy"] == "same-origin"
+    assert response.headers["cache-control"] == "no-store"
+
+
+def test_security_headers_are_set_on_errors():
+    response = client.get("/tasks/9999")
+    assert response.status_code == 404
+    assert response.headers["x-content-type-options"] == "nosniff"

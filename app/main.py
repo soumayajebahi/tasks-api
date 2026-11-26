@@ -127,5 +127,14 @@ def delete_task(task_id: int):
     return Response(status_code=204)
 
 
+@app.middleware("http")
+async def security_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["Cross-Origin-Resource-Policy"] = "same-origin"
+    response.headers["Cache-Control"] = "no-store"
+    return response
+
 # Doit rester en dernier : ajoute le middleware OpenTelemetry autour de tout le reste
 FastAPIInstrumentor.instrument_app(app)
+
