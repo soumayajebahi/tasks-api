@@ -91,6 +91,7 @@ jobs:
           sleep 5
           curl --fail http://localhost:8000/health
           mkdir -p zap && chmod 777 zap
+          # host network: ZAP reaches the port-forward on the runner's localhost (Linux only)
           docker run --rm --network host -v "$(pwd)/zap:/zap/wrk:rw" \
             ghcr.io/zaproxy/zaproxy:stable zap-api-scan.py \
             -t http://localhost:8000/openapi.json -f openapi \
@@ -101,3 +102,4 @@ jobs:
         with:
           name: dast-report
           path: zap/
+
