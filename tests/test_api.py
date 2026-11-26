@@ -55,3 +55,9 @@ def test_security_headers_are_set():
     assert response.headers["x-content-type-options"] == "nosniff"
     assert response.headers["cross-origin-resource-policy"] == "same-origin"
     assert response.headers["cache-control"] == "no-store"
+
+
+def test_security_headers_are_set_on_errors():
+    response = client.get("/tasks/9999")
+    assert response.status_code == 404
+    assert response.headers["x-content-type-options"] == "nosniff"
