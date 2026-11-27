@@ -39,7 +39,7 @@ pip install -r requirements-dev.txt
 uvicorn app.main:app --reload
 ```
 
-On Linux or macOS, activate the environment with `source .venv/bin/activate`.
+If PowerShell blocks the activation script, run Set-ExecutionPolicy -Scope CurrentUser RemoteSigned once. On Linux or macOS, activate the environment with `source .venv/bin/activate`.
 
 Interactive API documentation: http://localhost:8000/docs
 
@@ -154,7 +154,7 @@ The two low alerts were missing HTTP security headers. A middleware now sets `X-
 
 ## Development workflow
 
-Work is split into GitHub issues tracked in a GitHub Project board. Each issue has its own branch and pull request, which is reviewed by a classmate before a squash merge.
+Work is split into GitHub issues tracked in a GitHub Project board. Each issue has its own branch and pull request, and code changes are reviewed by a classmate before a squash merge.
 
 ## Project structure
 
@@ -168,4 +168,5 @@ docs/            ZAP reports
 Dockerfile
 docker-compose.yml
 ```
+
 
